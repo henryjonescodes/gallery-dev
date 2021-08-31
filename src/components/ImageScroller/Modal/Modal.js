@@ -1,5 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
+import { ModalContainer , ModalImage} from './ModalElements';
 
 const Modal = ({selectedImg, setSelectedImg }) => {
     
@@ -10,16 +11,20 @@ const Modal = ({selectedImg, setSelectedImg }) => {
     }
 
     return (
-        <motion.div className = "backdrop" onClick={handleClick}
+        // <motion.div className = "backdrop" 
+        <ModalContainer className = "backdrop" 
+            onClick={handleClick}
             initial={{opacity: 0}}
             animate={{opacity: 1}}
         >
-            <motion.img src={selectedImg} alt="enlarged image"
+            <ModalImage 
+                src={selectedImg} 
+                alt="enlarged image"
                 initial={{y: "-100vh"}}
                 animate={{y: "0vh"}}
                 transition={{ ease: "easeOut", duration: .5 }}
             />
-        </motion.div>
+        </ModalContainer>
     );
 }
 

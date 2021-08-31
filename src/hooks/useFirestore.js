@@ -1,4 +1,4 @@
-import { collection, query, onSnapshot} from 'firebase/firestore';
+import { collection, query, onSnapshot, orderBy} from 'firebase/firestore';
 
 import { useState, useEffect } from 'react';
 import { projectFireStore } from '../firebase/config';
@@ -7,7 +7,7 @@ const useFirestore = (col) => {
     const [docs, setDocs] = useState([]);
 
     useEffect(() => {
-        const q = query(collection(projectFireStore, col));
+        const q = query(collection(projectFireStore, col), orderBy('createdAt','desc'));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             const documents = [];
             querySnapshot.forEach((doc) => {
